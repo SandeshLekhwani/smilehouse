@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smile House — Dental, Skin & Hair Clinic by Dr. Ankita Wadhwa</title>
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/SandeshLekhwani/smilehouse/main/smilehousenobg.png">
         
     <!-- Embedded CSS -->
     <style>
@@ -278,7 +279,7 @@
         .btn:hover { 
             background: var(--color-accent-gold);
             border-color: var(--color-accent-gold);
-            color: var(--color-primary-white);
+            color: #111;
             transform: translateY(-2px); 
         }
         .btn.btn-outline {
@@ -484,6 +485,31 @@
             color: rgba(255,255,255,0.8);
             font-size: 0.9rem;
         }
+        .contact-info-container {
+            margin-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 1.5rem;
+        }
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.5rem;
+        }
+        .contact-icon {
+            height: 1rem;
+            width: auto;
+            margin-right: 0.5rem;
+        }
+        .contact-info-item a {
+            color: var(--color-secondary-aqua);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+        .contact-info-item a:hover {
+            border-color: var(--color-secondary-aqua);
+        }
         .text-white-85 { color: rgba(255,255,255,0.85); }
         .mt-2 { margin-top: 0.5rem; }
         .mt-6 { margin-top: 1.5rem; }
@@ -623,6 +649,16 @@
             <div class="glass-card text-center">
                 <h2>Ready for Your Transformation?</h2>
                 <p class="mt-2 text-white-85 max-w-xl mx-auto">Your journey to confidence starts here. Contact us today to schedule your personal consultation with Dr. Ankita Wadhwa. We're excited to welcome you to the Smile House family.</p>
+                <div class="contact-info-container">
+                    <div class="contact-info-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Google_Maps_icon_%282020%29.svg/1200px-Google_Maps_icon_%282020%29.svg.png" class="contact-icon" alt="Map Pin">
+                        <p>Smile House, Plot No. 15, Laxminarayan Colony, MIDC Road, Amravati</p>
+                    </div>
+                    <div class="contact-info-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Google_Maps_icon_%282020%29.svg/1200px-Google_Maps_icon_%282020%29.svg.png" class="contact-icon" alt="Map Pin">
+                        <a href="https://maps.app.goo.gl/R1WS2GJq4nr7SC3e8" target="_blank">View on Google Maps</a>
+                    </div>
+                </div>
                 <div class="mt-6 flex justify-center">
                      <a href="#" class="btn whatsapp-cta" data-cta-type="final">Contact Us on WhatsApp</a>
                 </div>

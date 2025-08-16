@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smile House — Dental, Skin & Hair Clinic by Dr. Ankita Wadhwa</title>
+        
+    <!-- Embedded CSS -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
+        
+        /* General Body and Reset Styles */
+        :root {
+            /* Dark Background */
+            --color-bg-start: #0F2027;
+            --color-bg-mid: #203A43;
+            --color-bg-end: #2C5364;
+
+            /* New Teal & Aqua Accent Theme from Logo */
+            --color-primary-teal: #0d7377;
+            --color-secondary-aqua: #32e0c4;
+            
+            /* Nebula Colors updated for the new theme */
+            --color-nebula1-start: rgba(13, 115, 119, 0.4); /* Primary Teal */
+            --color-nebula1-mid: rgba(50, 224, 196, 0.45); /* Secondary Aqua */
+            --color-nebula1-end: rgba(224, 242, 241, 0.3); /* Light Mint */
+            --color-nebula2-start: rgba(50, 224, 196, 0.45); /* Secondary Aqua */
+            --color-nebula2-mid: rgba(70, 130, 180, 0.35); /* SteelBlue - for contrast */
+            --color-nebula2-end: rgba(13, 115, 119, 0.4); /* Primary Teal */
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--color-bg-start);
+            color: #fff; /* White text for dark background */
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .background-container {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+            background: linear-gradient(45deg, var(--color-bg-start), var(--color-bg-mid), var(--color-bg-end));
+        }
+        .nebula {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.7;
+            will-change: transform;
+        }
+        #nebula1 {
+            width: 55vmax;
+            height: 55vmax;
+            top: -20%;
+            right: -20%;
+            background: linear-gradient(to bottom right, var(--color-nebula1-start), var(--color-nebula1-mid), var(--color-nebula1-end));
+        }
+        #nebula2 {
+            width: 50vmax;
+            height: 50vmax;
+            bottom: -25%;
+            left: -20%;
+            background: linear-gradient(to top right, var(--color-nebula2-start), var(--color-nebula2-mid), var(--color-nebula2-end));
+        }
+        #starfield {
+            position: absolute;
+            inset: 0;
+        }
+        .star {
+            position: absolute;
+            border-radius: 50%;
+            background: white;
+            animation: star-flow linear infinite;
+            will-change: transform, opacity;
+        }
+        @keyframes star-flow {
+            0% { transform: translateY(100vh); opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: translateY(0vh); opacity: 0; }
+        }
+        
+        /* Main Container */
+        .main-container {
+            width: 100%;
+            max-width: 1024px;
+            margin: auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Sticky Header */
+        .main-header {
+            position: sticky;
+            top: 1rem;
+            z-index: 50;
+            padding: 0 1rem;
+        }
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 1.5rem;
+        }
+        .header-logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: #fff;
+        }
+        .header-logo img {
+            height: 40px;
+            vertical-align: middle;
+            border-radius: 50%;
+        }
+
+        /* Sections */
+        section { padding: 4rem 0; }
+        h2 { 
+            font-size: clamp(1.8rem, 4vw, 2.5rem); 
+            margin-bottom: 0.5rem;
+            color: var(--color-secondary-aqua); /* Aqua for section headers */
+        }
+        
+        /* Glass Card Component */
+        .glass-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1.5rem;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            padding: 2rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .glass-card::before { /* Sheen effect */
+            content: '';
+            position: absolute;
+            top: -5rem; left: -5rem;
+            width: 15rem; height: 15rem;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        /* Hero Section */
+        .hero { padding-top: 6rem; text-align: center; }
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .hero h1 span {
+            background: linear-gradient(45deg, var(--color-secondary-aqua), #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero p {
+            max-width: 600px;
+            margin: 1.5rem auto 0;
+            color: rgba(255,255,255,0.85);
+        }
+        .hero-actions {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* Generic Button */
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.2s, color 0.2s;
+            border: 2px solid var(--color-primary-teal);
+            background: var(--color-primary-teal);
+            color: white;
+        }
+        .btn:hover { 
+            background: var(--color-secondary-aqua);
+            border-color: var(--color-secondary-aqua);
+            color: var(--color-primary-teal);
+            transform: translateY(-2px); 
+        }
+        .btn.btn-outline {
+            background: transparent;
+            color: white;
+            border-color: white;
+        }
+        .btn.btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Grid Layout for Services & Testimonials */
+        .grid-layout {
+            display: grid;
+            gap: 1.5rem;
+        }
+        .service-card h3 {
+             font-size: 1.75rem;
+             margin-bottom: 0.5rem;
+             color: #fff;
+        }
+        .service-card p {
+            color: rgba(255,255,255,0.85);
+            flex-grow: 1;
+        }
+        .service-card .btn {
+            margin-top: 1.5rem;
+            align-self: flex-start;
+        }
+
+        @media (min-width: 768px) {
+            .grid-layout { grid-template-columns: repeat(3, 1fr); }
+        }
+         @media (max-width: 767px) {
+            .grid-layout { grid-template-columns: 1fr; }
+        }
+
+
+        /* Testimonials */
+        .testimonial-author {
+            margin-top: 1rem;
+            text-align: right;
+            font-style: italic;
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* Footer */
+        .main-footer {
+            padding: 2rem 0;
+            text-align: center;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+        }
+        .text-white-85 { color: rgba(255,255,255,0.85); }
+        .mt-2 { margin-top: 0.5rem; }
+        .mt-6 { margin-top: 1.5rem; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        .max-w-xl { max-width: 36rem; }
+        .text-center { text-align: center; }
+        .flex { display: flex; }
+        .justify-center { justify-content: center; }
+
+    </style>
+</head>
+<body>
+
+    <div class="background-container">
+        <div id="nebula1" class="nebula"></div>
+        <div id="nebula2" class="nebula"></div>
+        <div id="starfield"></div>
+    </div>
+
+    <header class="main-header">
+        <nav class="header-nav">
+            <div class="header-logo">
+                <img src="https://instagram.fpnq7-4.fna.fbcdn.net/v/t51.2885-19/481167354_1860560704688266_8678733252644483231_n.jpg?efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby43NjIuYzIifQ&_nc_ht=instagram.fpnq7-4.fna.fbcdn.net&_nc_cat=110&_nc_oc=Q6cZ2QEY-MoNDGqraBjzsA1TIBv-UbQoENEJlyhV6tzFQho1k181KLI6KxnpeoCCrgoM5s2wOvza-38DjMj1DOa8BGx1&_nc_ohc=P1cooo6OtAkQ7kNvwHJkNLj&_nc_gid=uvApBXXb0PJQB17x_NvIHA&edm=AP4sbd4BAAAA&ccb=7-5&oh=00_AfUt-7mM39tAiemP_W1BYH4VUtDZkvckrT8iV_qfJqs1mw&oe=68A62840&_nc_sid=7a9f4b" alt="Smile House Logo">
+            </div>
+            <a href="#" class="btn whatsapp-cta" data-cta-type="header">Book Now</a>
+        </nav>
+    </header>
+
+    <main class="main-container">
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="glass-card">
+                <h1><span>Smile House</span><br>by Dr. Ankita Wadhwa</h1>
+                <p>Your one-stop destination for world-class Dental, Skin, and Hair treatments. We blend artistry with science to reveal your most confident self.</p>
+                <div class="hero-actions">
+                    <a href="#services" class="btn btn-outline">Explore Services</a>
+                    <a href="#" class="btn whatsapp-cta" data-cta-type="hero">Book an Appointment</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services">
+             <h2 class="text-center" style="margin-bottom: 2rem;">Our Premier Services</h2>
+            <div class="grid-layout">
+                <div class="glass-card service-card">
+                    <h3>💎 Dental Care</h3>
+                    <p>From routine check-ups to complete smile makeovers, we use the latest technology to craft healthy, beautiful smiles. Services include teeth whitening, implants, and veneers.</p>
+                    <a href="#" class="btn whatsapp-cta" data-cta-type="dental">Book Dental Consultation</a>
+                </div>
+                <div class="glass-card service-card">
+                    <h3>✨ Skin Treatments</h3>
+                    <p>Unveil your natural radiance with our advanced dermatological treatments. We offer personalized solutions for acne, aging, pigmentation, and more.</p>
+                    <a href="#" class="btn whatsapp-cta" data-cta-type="skin">Book Skin Consultation</a>
+                </div>
+                <div class="glass-card service-card">
+                    <h3>🌿 Hair Solutions</h3>
+                    <p>Restore your crowning glory with our effective hair restoration therapies. We provide treatments like PRP and advanced solutions for hair loss and scalp health.</p>
+                    <a href="#" class="btn whatsapp-cta" data-cta-type="hair">Book Hair Consultation</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials">
+            <h2 class="text-center" style="margin-bottom: 2rem;">What Our Patients Say</h2>
+            <div class="grid-layout">
+                <div class="glass-card">
+                    <p>“Dr. Ankita completely transformed my smile! The attention to detail and care I received at Smile House was exceptional. I couldn't be happier.”</p>
+                    <div class="testimonial-author">— Priya S.</div>
+                </div>
+                <div class="glass-card">
+                    <p>“My skin has never looked better. The treatment plan was tailored perfectly for me, and the results are amazing. Highly recommend their skin services.”</p>
+                    <div class="testimonial-author">— Rohan M.</div>
+                </div>
+                <div class="glass-card">
+                    <p>“I was worried about my hair loss, but the team at Smile House was so supportive and the treatment has shown incredible results. My confidence is back!”</p>
+                    <div class="testimonial-author">— Anjali K.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA Section -->
+        <section id="join">
+            <div class="glass-card text-center">
+                <h2>Ready for Your Transformation?</h2>
+                <p class="mt-2 text-white-85 max-w-xl mx-auto">Your journey to confidence starts here. Contact us today to schedule your personal consultation with Dr. Ankita Wadhwa. We're excited to welcome you to the Smile House family.</p>
+                <div class="mt-6 flex justify-center">
+                     <a href="#" class="btn whatsapp-cta" data-cta-type="final">Contact Us on WhatsApp</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2025 Smile House • Dr. Ankita Wadhwa. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Embedded JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // --- IMPORTANT: SET YOUR WHATSAPP NUMBER HERE ---
+            const yourWhatsAppNumber = "910000000000"; // Replace with your actual WhatsApp number including country code (e.g., 919876543210)
+
+            // --- WhatsApp CTA Handler ---
+            const ctaLinks = document.querySelectorAll('.whatsapp-cta');
+            
+            // Pre-filled messages for each button type
+            const messages = {
+                header: "Hello Dr. Ankita! I'd like to book an appointment.",
+                hero: "Hello Dr. Ankita! I'm interested in learning more about the services at Smile House.",
+                dental: "Hello! I would like to book a dental consultation.",
+                skin: "Hello! I would like to book a skin consultation.",
+                hair: "Hello! I would like to book a hair consultation.",
+                final: "Hello Smile House! I'm ready for my transformation and would like to get in touch."
+            };
+
+            ctaLinks.forEach(link => {
+                const ctaType = link.dataset.ctaType;
+                const message = messages[ctaType] || "Hello! I'm interested in your services.";
+                const whatsappUrl = `https://wa.me/${yourWhatsAppNumber}?text=${encodeURIComponent(message)}`;
+                link.href = whatsappUrl;
+                link.setAttribute('target', '_blank'); // Open in a new tab
+            });
+
+            // --- Parallax Background Animation ---
+            const nebula1 = document.getElementById('nebula1');
+            const nebula2 = document.getElementById('nebula2');
+            window.addEventListener('scroll', () => {
+                const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+                const scrollPercent = scrollTop / (scrollHeight - clientHeight);
+                nebula1.style.transform = `translateY(${scrollPercent * -100}px) rotate(${scrollPercent * 20}deg)`;
+                nebula2.style.transform = `translateY(${scrollPercent * 80}px) rotate(${scrollPercent * -15}deg)`;
+            });
+
+            // --- Starfield Generation ---
+            const starfield = document.getElementById('starfield');
+            const starCount = 150;
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const size = Math.random() * 2 + 0.5;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}vh`;
+                star.style.animationDuration = `${20 + Math.random() * 20}s`;
+                star.style.animationDelay = `${Math.random() * 20}s`;
+                starfield.appendChild(star);
+            }
+            
+        });
+    </script>
+</body>
+</html>
